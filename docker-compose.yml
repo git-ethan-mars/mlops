@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # FastAPI сервис
+  fastapi:
+    build: ./app
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_MODULE=main:app
+      - APP_HOST=0.0.0.0
+      - APP_PORT=8000
+    networks:
+      - monitoring
+
+  # Prometheus для сбора метрик
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./app/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - monitoring
+
+  # Grafana для визуализации
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - monitoring
+
+volumes:
+  grafana_data:
+
+networks:
+  monitoring:
+    driver: bridge
