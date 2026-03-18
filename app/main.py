@@ -59,7 +59,7 @@ def apply_drift(X_data):
 @app.post("/api/train")
 async def train_model(n_trials: int = Query(5, gt=0, le=1000)):
     try:
-        loaded_artifacts = joblib.load("models/artifacts.pkl")
+        loaded_artifacts = joblib.load("artifacts.pkl")
 
         X_train = loaded_artifacts.get("X_train_drifted", loaded_artifacts["X_train"])
         X_test = loaded_artifacts.get("X_test_drifted", loaded_artifacts["X_test"])
@@ -163,7 +163,7 @@ async def train_model(n_trials: int = Query(5, gt=0, le=1000)):
         "y_test": y_test
     }
 
-    joblib.dump(artifacts, "models/artifacts.pkl")
+    joblib.dump(artifacts, "artifacts.pkl")
 
     return {
         "status": "success",
@@ -181,7 +181,7 @@ async def train_model(n_trials: int = Query(5, gt=0, le=1000)):
 @app.get("/api/drift")
 async def get_data_drift():
     try:
-        loaded_artifacts = joblib.load("models/artifacts.pkl")
+        loaded_artifacts = joblib.load("artifacts.pkl")
     except FileNotFoundError:
         raise HTTPException(status_code=400, detail="Model is not trained.")
 
@@ -219,7 +219,7 @@ async def get_data_drift():
 @app.post("/api/drift/simulate")
 async def simulate_data_drift():
     try:
-        loaded_artifacts = joblib.load("models/artifacts.pkl")
+        loaded_artifacts = joblib.load("artifacts.pkl")
     except FileNotFoundError:
         raise HTTPException(status_code=400, detail="Model is not trained.")
 
@@ -247,7 +247,7 @@ async def simulate_data_drift():
 
     loaded_artifacts["X_train_drifted"] = X_train_drifted
     loaded_artifacts["X_test_drifted"] = X_test_drifted
-    joblib.dump(loaded_artifacts, "models/artifacts.pkl")
+    joblib.dump(loaded_artifacts, "artifacts.pkl")
 
     return {
         "status": "success",
@@ -262,7 +262,7 @@ async def simulate_data_drift():
 @app.get("/api/fairness")
 async def get_fairness():
     try:
-        loaded_artifacts = joblib.load("models/artifacts.pkl")
+        loaded_artifacts = joblib.load("artifacts.pkl")
     except FileNotFoundError:
         raise HTTPException(status_code=400, detail="Model is not trained.")
 
