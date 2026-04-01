@@ -39,7 +39,7 @@
 
 1. Клонируйте репозиторий (если он есть):
   ```bash
-   git clone <URL_вашего_репозитория>
+   git clone https://github.com/git-ethan-mars/mlops
    cd mlops
   ```
 2. Запустите контейнеры:
