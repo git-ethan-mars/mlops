@@ -19,11 +19,12 @@
 ```
 /mlops
   ├── app/
-  │   ├── main.py          # FastAPI приложение
-  │   ├── Dockerfile       # Dockerfile для сборки FastAPI
-  │   ├── requirements.txt # Зависимости Python
-  │   └── prometheus.yml   # Конфигурация Prometheus
-  └── docker-compose.yml   # Конфигурация Docker Compose
+  │   ├── main.py                # FastAPI приложение
+  │   ├── Dockerfile             # Dockerfile для сборки FastAPI
+  │   ├── requirements.txt       # Зависимости Python
+  │   └── prometheus.yml         # Конфигурация Prometheus
+  │   └── telegram-example.png   # Пример триггера в Telegram
+  └── docker-compose.yml         # Конфигурация Docker Compose
 ```
 
 ---
