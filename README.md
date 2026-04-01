@@ -1,4 +1,4 @@
-# MLOps Monitoring with FastAPI, Prometheus, and Grafana
+# MLOps Monitoring with FastAPI, Prometheus, and Grafana (работу выполнил Нестеров Дмитрий РИМ-240901)
 
 **Проект для мониторинга FastAPI-приложения с использованием Prometheus и Grafana в Docker.**
 
